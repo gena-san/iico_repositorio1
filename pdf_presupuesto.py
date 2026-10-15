@@ -33,7 +33,7 @@ def armar_pdf(numero, fecha, cliente, producto, cantidad, precio,
  
     # resumen
     renglon(pdf, "Subtotal", f"${subtotal:.2f}")
-    renglon(pdf, "Descuento", f"-${descuento:.2f}")
+    renglon(pdf, "Descuento", f"${descuento:.2f}")
     renglon(pdf, "IVA 21%", f"${iva:.2f}")
     pdf.set_font("Helvetica", "B", 14)
     renglon(pdf, "TOTAL", f"${total:.2f}")
