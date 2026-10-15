@@ -21,7 +21,7 @@ if producto == "alfajor":
     if pago == "efectivo":
         desc = round(calcular_descuento(subtotal,10),2)
         iva = calcular_iva(desc)
-        final = round(subtotal + desc + iva,2)
+        final = round(subtotal - desc + iva,2)
         st.write(f"el descuento por efectivo es: {subtotal-(calcular_descuento(subtotal,10))}")
         st.write(f"el iva es de: {iva}")
         st.write(f"el precio final de {cliente} es de: {final}")
@@ -37,7 +37,7 @@ else:
     iva = calcular_iva(desc)
     if pago == "efectivo":
         desc = round(calcular_descuento(subtotal,10),2)
-        final = round(subtotal + desc + calcular_iva(desc),2)
+        final = round(subtotal - desc + calcular_iva(desc),2)
         st.write(f"el descuento por efectivo es: {subtotal-(calcular_descuento(subtotal,10))}")
         st.write(f"el iva es de: {calcular_iva(desc)}")
         st.write(f"el precio final de {cliente} es de: {final}")
