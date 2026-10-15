@@ -77,7 +77,7 @@ def calcular_descuento(subtotal, porcentaje):
     if porcentaje < 0 or porcentaje > 100:
         return 0.0
     else:
-        return round(subtotal-((subtotal * porcentaje)/100), 2)
+        return round((subtotal * porcentaje)/100, 2)
     # TU CODIGO ACA
     pass
 
