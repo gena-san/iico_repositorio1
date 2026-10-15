@@ -1,2 +1,0 @@
-streamlit
-2fpdf
