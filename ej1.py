@@ -19,10 +19,10 @@ if producto == "alfajor":
     subtotal = subtotal - (cant//3)*precios[0]
     st.write(f"el subtotal es: {subtotal}")
     if pago == "efectivo":
-        desc = round(subtotal - calcular_descuento(subtotal,10),2)
+        desc = round(calcular_descuento(subtotal,10),2)
         iva = calcular_iva(desc)
         final = round(desc + iva,2)
-        st.write(f"el descuento por efectivo es: {calcular_descuento(subtotal,10)}")
+        st.write(f"el descuento por efectivo es: {subtotal-(calcular_descuento(subtotal,10))}")
         st.write(f"el iva es de: {iva}")
         st.write(f"el precio final de {cliente} es de: {final}")
     else:
@@ -36,9 +36,9 @@ else:
     desc = 0
     iva = calcular_iva(desc)
     if pago == "efectivo":
-        desc = round(subtotal - calcular_descuento(subtotal,10),2)
+        desc = round(calcular_descuento(subtotal,10),2)
         final = round(desc + calcular_iva(desc),2)
-        st.write(f"el descuento por efectivo es: {calcular_descuento(subtotal,10)}")
+        st.write(f"el descuento por efectivo es: {subtotal-(calcular_descuento(subtotal,10))}")
         st.write(f"el iva es de: {calcular_iva(desc)}")
         st.write(f"el precio final de {cliente} es de: {final}")
     else:
