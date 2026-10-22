@@ -5,8 +5,8 @@ from pdf_presupuesto import *
 def total(cantidad,precio):
         subtotal=cantidad * precio
         return subtotal
-productos = ["alfajor","gaseosa","chicle","agua"]
-precios = [1500, 2800, 500, 1800]
+productos = ["alfajor","gaseosa","chicle","agua","galletas"]
+precios = [1500, 2800, 500, 1800,2000]
 st.title("Kiosco IICO")
 cliente = st.text_input("Ingrese su nombre")
 producto = st.selectbox("Seleccione el producto", productos)
@@ -17,7 +17,7 @@ i = buscar_posicion(productos,producto)
 subtotal = total(cant,precios[i])
 if producto == "alfajor":
     subtotal = subtotal - (cant//3)*precios[0]
-    st.write(f"el subtotal es: {subtotal}")
+    st.write(f"(3x2 en alfajores) el subtotal es: {subtotal}")
     if pago == "efectivo":
         desc = round(calcular_descuento(subtotal,10),2)
         iva = calcular_iva(desc)
