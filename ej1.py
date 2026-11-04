@@ -38,7 +38,7 @@ pago_1 = st.radio("Método de pago (Producto 1)", ["efectivo", "transferencia"],
 sub1, desc1, iva1, final1 = procesar_y_mostrar(cliente, producto_1, cant_1, pago_1, precios, productos)
 st.write("Producto 2 (Opcional)")
 quiere_otro = st.radio("¿Desea elegir otro producto?", ["no", "si"], key="otro")
-
+i_p1 = buscar_posicion(productos, producto_1)
 items_comprados = []
 items_comprados.append((producto_1, cant_1, precios[i_p1]))
 
