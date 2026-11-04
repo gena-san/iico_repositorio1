@@ -39,22 +39,22 @@ sub1, desc1, iva1, final1 = procesar_y_mostrar(cliente, producto_1, cant_1, pago
 st.write("Producto 2 (Opcional)")
 quiere_otro = st.radio("¿Desea elegir otro producto?", ["no", "si"], key="otro")
 
-if quiere_otro == "si":
-    producto_2 = st.selectbox("Seleccione el producto 2", productos, key="p2")
-    cant_2 = st.number_input(f"Ingrese la cantidad de {producto_2}:", min_value=0, step=1, key="c2")
-    pago_2 = st.radio("Método de pago (Producto 2)", ["efectivo", "transferencia"], key="pay2")
-    sub2, desc2, iva2, final2 = procesar_y_mostrar(cliente, producto_2, cant_2, pago_2, precios, productos)
-    subtotal_total = sub1 + sub2
-    desc_total = desc1 + desc2
-    iva_total = iva1 + iva2
-    final_total = final1 + final2
-    st.write(f"Total general a pagar por {cliente}: ${final_total}")
-    i_p1 = buscar_posicion(productos, producto_1)
-    archivo = armar_pdf(1, fecha, cliente, f"{producto_1} y {producto_2}", cant_1, precios[i_p1], subtotal_total, desc_total, iva_total, final_total)
-else:
-    i_p1 = buscar_posicion(productos, producto_1)
-    archivo = armar_pdf(1, fecha, cliente, producto_1, cant_1, precios[i_p1], sub1, desc1, iva1, final1)
+items_comprados = []
+items_comprados.append((producto_1, cant_1, precios[i_p1]))
 
+if quiere_otro == "si":
+    items_comprados.append((producto_2, cant_2, precios[i_p2]))
+    subtotal_final = sub1 + sub2
+    desc_final = desc1 + desc2
+    iva_final = iva1 + iva2
+    total_final = final1 + final2
+else:
+    subtotal_final = sub1
+    desc_final = desc1
+    iva_final = iva1
+    total_final = final1
+
+archivo = armar_pdf(1, fecha, cliente, items_comprados, subtotal_final, desc_final, iva_final, total_final)
 if cliente:
     st.download_button(
          label="Descargar presupuesto",
