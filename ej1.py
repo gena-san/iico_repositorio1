@@ -39,10 +39,12 @@ sub1, desc1, iva1, final1 = procesar_y_mostrar(cliente, producto_1, cant_1, pago
 st.write("Producto 2 (Opcional)")
 quiere_otro = st.radio("¿Desea elegir otro producto?", ["no", "si"], key="otro")
 i_p1 = buscar_posicion(productos, producto_1)
+
 items_comprados = []
 items_comprados.append((producto_1, cant_1, precios[i_p1]))
 
 if quiere_otro == "si":
+    i_p2 = buscar_posicion(productos, producto_2)
     items_comprados.append((producto_2, cant_2, precios[i_p2]))
     subtotal_final = sub1 + sub2
     desc_final = desc1 + desc2
