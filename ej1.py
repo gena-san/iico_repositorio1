@@ -15,7 +15,7 @@ cliente = st.text_input("Ingrese su nombre")
 cliente = limpiar(cliente)
 fecha = st.date_input("fecha")
 
-st.markdown("### Producto 1")
+st.write("Producto 1")
 producto_1 = st.selectbox("Seleccione el producto 1", productos, key="p1")
 cant_1 = st.number_input(f"ingrese la cantidad de {producto_1}: ", min_value=0, step=1, key="c1")
 pago_1 = st.radio("Seleccione el metodo de pago", ["efectivo", "transferencia"], key="pay1")
@@ -54,22 +54,17 @@ else:
         final1 = round(sub1 + iva1, 2)
         st.write(f"el iva es de: {iva1}")
         st.write(f"el precio final de {cliente} es de: {final1}")
-
 quiere_otro = st.radio("desea elegir otro producto?: ", ["no", "si"], key="otro")
-
 sub2 = 0
 desc2 = 0
 iva2 = 0
 final2 = 0
-
 if quiere_otro == "si":
     producto_2 = st.selectbox("Seleccione el producto 2", productos, key="p2")
     cant_2 = st.number_input(f"ingrese la cantidad de {producto_2}: ", min_value=0, step=1, key="c2")
     pago_2 = st.radio("Seleccione el metodo de pago", ["efectivo", "transferencia"], key="pay2")
-
     i_p2 = buscar_posicion(productos, producto_2)
     sub2 = total(cant_2, precios[i_p2])
-
     if producto_2 == "alfajor":
         sub2 = sub2 - (cant_2 // 3) * precios[0]
         st.write(f"(3x2 en alfajores) el subtotal es: {sub2}")
@@ -119,7 +114,9 @@ else:
 
 archivo = armar_pdf(1, fecha, cliente, items_comprados, subtotal_final, desc_final, iva_final, total_final)
 
-if cliente:
+if cliente == "":
+    st.warning("Escribí el nombre del cliente para armar el presupuesto")
+else:
     st.download_button(
         label="Descargar presupuesto",
         data=archivo,
