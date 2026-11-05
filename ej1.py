@@ -12,6 +12,7 @@ precios = [1500, 2800, 500, 1800, 2000]
 
 st.title("Kiosco IICO")
 cliente = st.text_input("Ingrese su nombre")
+cliente = limpiar(cliente)
 fecha = st.date_input("fecha")
 
 st.markdown("### Producto 1")
